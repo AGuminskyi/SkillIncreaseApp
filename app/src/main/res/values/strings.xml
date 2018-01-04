@@ -18,4 +18,10 @@
     <string name="slide_four_desc">Приятного использования!</string>
 
     <string name="documents">Документы</string>
+
+    <string name="login">Введите ваше имя</string>
+    <string name="password">Введите ваш пароль</string>
+
+    <string name="autorize">Авторизироваться</string>
+
 </resources>

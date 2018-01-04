@@ -9,7 +9,7 @@ import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.WindowManager
-import com.idapgroup.artemhuminkiy.skillincreaseapp.MainActivity
+import com.idapgroup.artemhuminkiy.skillincreaseapp.AutorizationActivity
 import com.idapgroup.artemhuminkiy.skillincreaseapp.R
 import com.idapgroup.artemhuminkiy.skillincreaseapp.utils.firstTimeLaunched
 import com.idapgroup.artemhuminkiy.skillincreaseapp.utils.isFrirstTimeLaunched
@@ -88,7 +88,8 @@ class WelcomeActivity : AppCompatActivity() {
 
     private fun launchHomeScreen() {
         prefs.firstTimeLaunched(false, this)
-        startActivity(Intent(this, MainActivity::class.java))
+//        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, AutorizationActivity::class.java))
         finish()
     }
 }
