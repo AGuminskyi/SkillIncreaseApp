@@ -8,7 +8,7 @@ import android.widget.TextView
 import com.idapgroup.artemhuminkiy.skillincreaseapp.gitHub.Repository
 import com.idapgroup.artemhuminkiy.skillincreaseapp.userData.User
 
-class MyAdapter : RecyclerView.Adapter<MyAdapter.MyViewHolder>() {
+class MyRecyclerAdapter : RecyclerView.Adapter<MyRecyclerAdapter.MyViewHolder>() {
 
     private var users : MutableList<User> = mutableListOf()
     private var repos : MutableList<Repository> = mutableListOf()

@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">SkillIncreaseApp</string>
+
+    <string name="next">Следующий</string>
+    <string name="skip">Пропустить</string>
+    <string name="go_it">Далее</string>
+
+    <string name="slide_one_titile">Добро пожаловать!</string>
+    <string name="slide_one_desc">Это приложение для мониторинга документооборота кафедры.</string>
+
+    <string name="slide_two_titile">Вход</string>
+    <string name="slide_two_desc">Войдите под своей учетной записью.</string>
+
+    <string name="slide_three_titile">Возможности</string>
+    <string name="slide_three_desc">Открытый доступ к документам кафедры АПЕПС КПИ. Скачивайте, редактируейте и сохраняйте изменения!</string>
+
+    <string name="slide_four_titile">Сасибо за внимание</string>
+    <string name="slide_four_desc">Приятного использования!</string>
 </resources>

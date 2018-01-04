@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var userViewModel : UserViewModel
 
     private val adapter by lazy {
-        MyAdapter()
+        MyRecyclerAdapter()
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -36,7 +36,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                 })
     }
 
-//    fun method() {
+/*    fun method() {
 //        Observable.fromCallable {
 //            90
 //        }
@@ -89,8 +89,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 //            }
 //
 //        })
-//    }
-
+    } */
 }
 
 /*        userModel.getUsersId()
