@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/bg_screen4">
+    android:background="@drawable/welcome_slide4">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -20,7 +20,7 @@
         <ImageView
             android:layout_width="@dimen/img_width_height"
             android:layout_height="@dimen/img_width_height"
-            android:src="@mipmap/ic_thanks" />
+            android:src="@drawable/ic_thumb_up_white_48dp" />
 
         <TextView
             android:layout_width="wrap_content"
