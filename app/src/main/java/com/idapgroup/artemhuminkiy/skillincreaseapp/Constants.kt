@@ -8,4 +8,8 @@ object Constants {
     val PREF_NAME = "com.idapgroup.artemhuminkiy.skillincreaseapp"
 
     val LAYOUT = "layout"
+
+    val USER_NAME = "user_name"
+
+    val ID = "id"
 }

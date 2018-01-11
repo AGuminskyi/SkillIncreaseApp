@@ -8,10 +8,10 @@ import com.idapgroup.artemhuminkiy.skillincreaseapp.gitHub.GitHubService
 import com.idapgroup.artemhuminkiy.skillincreaseapp.gitHub.Repository
 
 class UserViewModel(application: Application) : AndroidViewModel(application) {
-    val users: MutableLiveData<List<User>> = MutableLiveData()
+//    val users: MutableLiveData<List<User>> = MutableLiveData()
     val repos: MutableLiveData<List<Repository>> = MutableLiveData()
 
-    fun getUsers() {
+/*    fun getUsers() {
         val userModel = UserManager()
         userModel.getUsersId()
                 .flattenAsObservable { it }
@@ -25,6 +25,8 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                 })
 
     }
+
+*/
 
     fun getRepos(userName: String) {
         val gitHubService = GitHubService()

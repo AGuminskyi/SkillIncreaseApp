@@ -11,7 +11,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.jackson.JacksonConverterFactory
 
-class GitHubService() {
+class GitHubService {
     private var gitHubApi: GitHubApi
 
     init {
@@ -23,7 +23,7 @@ class GitHubService() {
         gitHubApi = retrofit.create(GitHubApi::class.java)
     }
 
-    private fun objectMapper() : ObjectMapper{
+    private fun objectMapper(): ObjectMapper {
         val objectMapper = ObjectMapper()
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL)
@@ -32,6 +32,11 @@ class GitHubService() {
 
     fun repos(userName: String): Single<List<Repository>> =
             gitHubApi.listRepos(userName)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+
+    fun user(user: User): Single<User> =
+            gitHubApi.userInfo(user.login)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
 

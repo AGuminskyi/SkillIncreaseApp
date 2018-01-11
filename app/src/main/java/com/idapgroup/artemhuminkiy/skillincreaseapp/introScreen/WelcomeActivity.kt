@@ -9,8 +9,9 @@ import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.WindowManager
-import com.idapgroup.artemhuminkiy.skillincreaseapp.AuthorizationActivity
 import com.idapgroup.artemhuminkiy.skillincreaseapp.R
+import com.idapgroup.artemhuminkiy.skillincreaseapp.authorization.AuthorizationActivity
+import com.idapgroup.artemhuminkiy.skillincreaseapp.utils.firstTimeLaunched
 import com.idapgroup.artemhuminkiy.skillincreaseapp.utils.isFrirstTimeLaunched
 import kotlinx.android.synthetic.main.activity_welcome.*
 
@@ -86,8 +87,7 @@ class WelcomeActivity : AppCompatActivity() {
     }
 
     private fun launchHomeScreen() {
-//        prefs.firstTimeLaunched(false, this)
-//        startActivity(Intent(this, MainActivity::class.java))
+        prefs.firstTimeLaunched(false, this)
         startActivity(Intent(this, AuthorizationActivity::class.java))
         finish()
     }

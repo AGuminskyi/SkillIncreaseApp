@@ -14,7 +14,5 @@ class User() {
     var age : Int = 0
     lateinit var gender : String
 
-    override fun toString(): String {
-        return "id=$id name =$name age=$age gender=$gender"
-    }
+    override fun toString(): String = "id=$id name =$name age=$age gender=$gender"
 }

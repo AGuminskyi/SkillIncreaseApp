@@ -7,13 +7,11 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.idapgroup.artemhuminkiy.skillincreaseapp.gitHub.Repository
-import com.idapgroup.artemhuminkiy.skillincreaseapp.userData.User
 import com.idapgroup.artemhuminkiy.skillincreaseapp.userData.UserViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private var data: MutableList<User> = mutableListOf()
     private lateinit var layoutManager: RecyclerView.LayoutManager
     private lateinit var userViewModel : UserViewModel
 
@@ -33,23 +31,23 @@ class MainActivity : AppCompatActivity() {
         userViewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
 
 
-        subscirbe()
-//        userViewModel.getUsers()
-        userViewModel.getRepos("AGuminskyi")
-
+        subscribe()
+        val intent = intent
+        val userName = intent.getStringExtra(Constants.USER_NAME)
+        userViewModel.getRepos(userName)
     }
 
-    private fun subscirbe() {
+    private fun subscribe() {
 
-        val users = Observer<List<User>> {
-            adapter.addItems(it!!)
-        }
+//        val users = Observer<List<User>> {
+//            adapter.addItems(it!!)
+//        }
 
         val repos = Observer<List<Repository>>{
            adapter.addRepos(it!!)
         }
 
-        userViewModel.users.observe(this, users)
+//        userViewModel.users.observe(this, users)
         userViewModel.repos.observe(this, repos)
     }
 }

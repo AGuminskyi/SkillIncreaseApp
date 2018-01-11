@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import com.idapgroup.artemhuminkiy.skillincreaseapp.gitHub.Repository
 import com.idapgroup.artemhuminkiy.skillincreaseapp.userData.User
@@ -43,6 +44,7 @@ class MyRecyclerAdapter : RecyclerView.Adapter<MyRecyclerAdapter.MyViewHolder>()
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var photo : ImageView = itemView.findViewById(R.id.document_image)
         var id : TextView = itemView.findViewById(R.id.id)
         var name : TextView = itemView.findViewById(R.id.name)
         var age : TextView = itemView.findViewById(R.id.age)
