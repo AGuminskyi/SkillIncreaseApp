@@ -5,7 +5,6 @@ import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.WindowManager
@@ -41,13 +40,12 @@ class WelcomeActivity : AppCompatActivity() {
         val viewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
         viewPager.adapter = viewPagerAdapter
         indicator.setViewPager(viewPager)
-
+        getString(R.string.id, "sss")
         nextButton.setOnClickListener {
             val position = viewPager.currentItem
-            if(position!= viewPager.adapter.count - 1){
+            if (position != viewPager.adapter.count - 1) {
                 viewPager.currentItem = position + 1
-            }
-            else
+            } else
                 launchHomeScreen()
         }
 
@@ -55,24 +53,14 @@ class WelcomeActivity : AppCompatActivity() {
             launchHomeScreen()
         }
 
-        viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrollStateChanged(state: Int) {
+        viewPager.addOnPageChangeListener(PageSelectedListener{
+            if (it == viewPager.adapter.count - 1) {
+                nextButton.text = getString(R.string.go_it)
+                skipButton.visibility = View.GONE
+            } else {
+                nextButton.text = getString(R.string.next)
+                skipButton.visibility = View.VISIBLE
             }
-
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-            }
-
-            override fun onPageSelected(position: Int) {
-                if (position == viewPager.adapter.count - 1) {
-                    nextButton.text = getString(R.string.go_it)
-                    skipButton.visibility = View.GONE
-                }
-                else{
-                    nextButton.text = getString(R.string.next)
-                    skipButton.visibility = View.VISIBLE
-                }
-            }
-
         })
 
 

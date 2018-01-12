@@ -8,15 +8,28 @@ import com.idapgroup.artemhuminkiy.skillincreaseapp.gitHub.GitHubService
 import com.idapgroup.artemhuminkiy.skillincreaseapp.gitHub.User
 
 class AuthorizationViewModel(application: Application) : AndroidViewModel(application) {
-    var userInfo: MutableLiveData<User> = MutableLiveData()
+    var userInfo = MutableLiveData<AuthorizationState>().apply {
+        value = AuthorizationState.Init
+    }
 
     fun getUser(user: User) {
         val gitHubService = GitHubService()
         gitHubService.user(user)
                 .subscribe({
-                    userInfo.postValue(it)
+                    userInfo.value = AuthorizationState.Data(it)
                 }, {
+                    userInfo.value = AuthorizationState.Error(it.message!!)
                     Log.e("Skill", it.message)
                 })
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+    }
+
+    sealed class AuthorizationState {
+        object Init : AuthorizationState()
+        class Error(val message: String) : AuthorizationState()
+        class Data(val user : User) : AuthorizationState()
     }
 }
