@@ -23,12 +23,15 @@
     <string name="password">Введите ваш пароль</string>
 
     <string name="autorize">Авторизироваться</string>
-    
+
     <string name="remember_me">Запомнить меня</string>
 
     <string name="id" formatted="false">ID = %s</string>
     <string name="name" formatted="false">NAME = %s</string>
     <string name="age" formatted="false">AGE = %s</string>
     <string name="gender" formatted="false">GENDER = %s</string>
+
+    <string name="kpi">KPI</string>
+    <string name="apeps">APEPS</string>
 
 </resources>

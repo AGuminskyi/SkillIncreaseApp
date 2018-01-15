@@ -1,5 +1,6 @@
 package com.idapgroup.artemhuminkiy.skillincreaseapp.introScreen
 
+import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Color
@@ -23,7 +24,7 @@ class WelcomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        prefs = this.getPreferences(android.content.Context.MODE_PRIVATE)
+        prefs = this.getPreferences(Context.MODE_PRIVATE)
         if (!prefs.isFrirstTimeLaunched(this)) {
             launchHomeScreen()
         }

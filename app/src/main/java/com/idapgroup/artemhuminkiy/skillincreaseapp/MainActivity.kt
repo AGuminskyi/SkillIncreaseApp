@@ -4,6 +4,7 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.widget.Toast
 import com.idapgroup.artemhuminkiy.skillincreaseapp.userData.UserViewModel
 import com.idapgroup.artemhuminkiy.skillincreaseapp.utils.getExtrasExt
 import kotlinx.android.synthetic.main.activity_main.*
@@ -28,7 +29,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun subscribe() {
         userViewModel.repos.observe(this, Observer {
-            adapter.addRepos(it!!)
+            if (it != null) {
+                when (it) {
+                    is UserViewModel.ReposState.Error -> {
+                        Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                    }
+                    is UserViewModel.ReposState.Repos -> {
+                        adapter.addRepos(it.listRepository)
+                    }
+                }
+            }
         })
     }
 }

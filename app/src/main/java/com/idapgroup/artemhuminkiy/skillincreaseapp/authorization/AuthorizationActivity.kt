@@ -2,6 +2,7 @@ package com.idapgroup.artemhuminkiy.skillincreaseapp.authorization
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Context
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -16,21 +17,27 @@ import kotlinx.android.synthetic.main.activity_autorization.*
 
 class AuthorizationActivity : AppCompatActivity() {
 
-    private lateinit var authorizationViewModel: AuthorizationViewModel
+    private val authorizationViewModel: AuthorizationViewModel by lazy { ViewModelProviders.of(this).get(AuthorizationViewModel::class.java) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        setContentView(R.layout.activity_autorization)
-
-        authorizationViewModel = ViewModelProviders.of(this).get(AuthorizationViewModel::class.java)
 
         val binding = DataBindingUtil.setContentView<ActivityAutorizationBinding>(this, R.layout.activity_autorization)
         subscribe()
 
         authorizeButton.setOnClickListener {
             getUser(binding)
+            checkIsRemembered(binding)
+            authorizationViewModel.getUser(binding.user)
         }
 
+    }
+
+    private fun checkIsRemembered(binding: ActivityAutorizationBinding) {
+        if (forgotPassword.isChecked){
+            val prefs = this.getPreferences(Context.MODE_PRIVATE)
+            prefs.edit().putString(Constants.USER_NAME, binding.user.login).apply()
+        }
     }
 
     private fun subscribe() {
@@ -52,7 +59,6 @@ class AuthorizationActivity : AppCompatActivity() {
         val user = User()
         user.login = login.text.toString()
         binding.user = user
-        authorizationViewModel.getUser(binding.user)
     }
 
     private fun putInBundle(user: User): Bundle {
