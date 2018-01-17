@@ -8,4 +8,6 @@ interface GitHubApi {
     @GET("users/{user}/repos")
     fun listRepos(@Path("user") user : String) : Single<List<Repository>>
 
+    @GET("users/{user}")
+    fun userInfo(@Path("user") user : String) : Single<User>
 }

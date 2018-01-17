@@ -4,34 +4,23 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import com.idapgroup.artemhuminkiy.skillincreaseapp.gitHub.Repository
-import com.idapgroup.artemhuminkiy.skillincreaseapp.userData.User
 
 class MyRecyclerAdapter : RecyclerView.Adapter<MyRecyclerAdapter.MyViewHolder>() {
 
-    private var users : MutableList<User> = mutableListOf()
     private var repos : MutableList<Repository> = mutableListOf()
 
-    override fun onBindViewHolder(holder: MyViewHolder?, position: Int) {
-//        val user = users[position]
-//        holder!!.id.text = user.id
-//        holder.name.text = user.name
-//        holder.age.text = user.age.toString()
-//        holder.gender.text = user.gender
-
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val repository = repos[position]
-        holder!!.name.text = repository.name
-        holder.gender.text = repository.full_name
+        holder.name.text = repository.name
+        holder.gender.text = repository.fullName
+
     }
 
     fun addRepos(items : List<Repository>){
         repos.addAll(items)
-        notifyDataSetChanged()
-    }
-
-    fun addItems(items: List<User>){
-        users.addAll(items)
         notifyDataSetChanged()
     }
 
@@ -43,6 +32,7 @@ class MyRecyclerAdapter : RecyclerView.Adapter<MyRecyclerAdapter.MyViewHolder>()
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        var photo : ImageView = itemView.findViewById(R.id.document_image)
         var id : TextView = itemView.findViewById(R.id.id)
         var name : TextView = itemView.findViewById(R.id.name)
         var age : TextView = itemView.findViewById(R.id.age)

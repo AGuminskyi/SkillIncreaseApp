@@ -18,4 +18,29 @@
     <string name="slide_four_desc">Приятного использования!</string>
 
     <string name="documents">Документы</string>
+
+    <string name="login">Введите ваше имя</string>
+    <string name="password">Введите ваш пароль</string>
+
+    <string name="autorize">Авторизироваться</string>
+
+    <string name="remember_me">Запомнить меня</string>
+
+    <string name="id" formatted="false">ID = %s</string>
+    <string name="name" formatted="false">NAME = %s</string>
+    <string name="age" formatted="false">AGE = %s</string>
+    <string name="gender" formatted="false">GENDER = %s</string>
+
+    <string name="kpi">KPI</string>
+    <string name="apeps">APEPS</string>
+
+    <string name="document_type">Тип документа:</string>
+    <string name="author">Автор:</string>
+    <string name="creator">Создатель:</string>
+    <string name="executor">Исполнитель:</string>
+    <string name="open_document">Открыть документ</string>
+    <string name="document_name">Имя документа:</string>
+    <string name="done">Выполнено</string>
+
+
 </resources>

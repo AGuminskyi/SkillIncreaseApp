@@ -4,53 +4,42 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import com.idapgroup.artemhuminkiy.skillincreaseapp.gitHub.Repository
-import com.idapgroup.artemhuminkiy.skillincreaseapp.userData.User
+import android.widget.Toast
 import com.idapgroup.artemhuminkiy.skillincreaseapp.userData.UserViewModel
+import com.idapgroup.artemhuminkiy.skillincreaseapp.utils.getExtrasExt
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    private var data: MutableList<User> = mutableListOf()
-    private lateinit var layoutManager: RecyclerView.LayoutManager
-    private lateinit var userViewModel : UserViewModel
-
+    private val userViewModel: UserViewModel by lazy { ViewModelProviders.of(this).get(UserViewModel::class.java) }
     private val adapter by lazy {
         MyRecyclerAdapter()
     }
+    private val userName by lazy { intent.getExtrasExt() }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         my_toolbar.title = getString(R.string.documents)
         setSupportActionBar(my_toolbar)
-
-        layoutManager = LinearLayoutManager(this)
-        recyclerView.layoutManager = layoutManager
         recyclerView.adapter = adapter
-
-        userViewModel = ViewModelProviders.of(this).get(UserViewModel::class.java)
-
-
-        subscirbe()
-//        userViewModel.getUsers()
-        userViewModel.getRepos("AGuminskyi")
-
+        subscribe()
+        userViewModel.getRepos(userName)
     }
 
-    private fun subscirbe() {
-
-        val users = Observer<List<User>> {
-            adapter.addItems(it!!)
-        }
-
-        val repos = Observer<List<Repository>>{
-           adapter.addRepos(it!!)
-        }
-
-        userViewModel.users.observe(this, users)
-        userViewModel.repos.observe(this, repos)
+    private fun subscribe() {
+        userViewModel.repos.observe(this, Observer {
+            if (it != null) {
+                when (it) {
+                    is UserViewModel.ReposState.Error -> {
+                        Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                    }
+                    is UserViewModel.ReposState.Repos -> {
+                        adapter.addRepos(it.listRepository)
+                    }
+                }
+            }
+        })
     }
 }
 
