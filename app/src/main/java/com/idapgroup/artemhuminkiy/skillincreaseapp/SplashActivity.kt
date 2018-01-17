@@ -17,28 +17,15 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
-//        flipLogo()
-        flipLogo()
-        Handler().postDelayed({
-            checkFirstScreen()
-        }, 2000)
+        Handler().postDelayed({ flipLogo() }, 400)
+        Handler().postDelayed({ checkFirstScreen() }, 1900)
     }
 
     private fun flipLogo() {
-        val rotate = RotateAnimation(0f,360f, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f)
-        rotate.duration = 2000
+        val rotate = RotateAnimation(0f, 360f, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f)
+        rotate.duration = 1500
         progress.startAnimation(rotate)
     }
-
-//    private fun flipLogo() {
-//        val fadeOut = AlphaAnimation(1f, 0f)
-//        fadeOut.interpolator = AccelerateInterpolator()
-//        fadeOut.duration = 1000
-//        fadeOut.fillAfter = true
-//        fadeOut.setAnimationListener(object  Animation.AnimationListener{
-//
-//        })
-//    }
 
     private fun checkFirstScreen() {
         val prefs = this.getPreferences(Context.MODE_PRIVATE)

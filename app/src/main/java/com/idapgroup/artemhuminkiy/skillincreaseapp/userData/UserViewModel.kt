@@ -6,15 +6,17 @@ import android.arch.lifecycle.MutableLiveData
 import android.util.Log
 import com.idapgroup.artemhuminkiy.skillincreaseapp.gitHub.GitHubService
 import com.idapgroup.artemhuminkiy.skillincreaseapp.gitHub.Repository
+import io.reactivex.disposables.Disposable
 
 class UserViewModel(application: Application) : AndroidViewModel(application) {
     val repos = MutableLiveData<ReposState>().apply {
         value = ReposState.Init
     }
+    lateinit var disposableObject : Disposable
 
     fun getRepos(userName: String) {
         val gitHubService = GitHubService()
-        gitHubService.repos(userName)
+        disposableObject = gitHubService.repos(userName)
                 .subscribe({
                     repos.value = ReposState.Repos(it)
                 }, {
@@ -25,6 +27,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
     override fun onCleared() {
         super.onCleared()
+        disposableObject.dispose()
     }
 
     sealed class ReposState{
