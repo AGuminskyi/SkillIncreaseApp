@@ -34,4 +34,13 @@
     <string name="kpi">KPI</string>
     <string name="apeps">APEPS</string>
 
+    <string name="document_type">Тип документа:</string>
+    <string name="author">Автор:</string>
+    <string name="creator">Создатель:</string>
+    <string name="executor">Исполнитель:</string>
+    <string name="open_document">Открыть документ</string>
+    <string name="document_name">Имя документа:</string>
+    <string name="done">Выполнено</string>
+
+
 </resources>
