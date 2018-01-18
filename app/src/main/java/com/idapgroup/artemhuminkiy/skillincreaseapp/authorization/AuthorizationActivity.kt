@@ -8,10 +8,12 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.idapgroup.artemhuminkiy.skillincreaseapp.Constants
+import com.idapgroup.artemhuminkiy.skillincreaseapp.MainActivity
 import com.idapgroup.artemhuminkiy.skillincreaseapp.R
 import com.idapgroup.artemhuminkiy.skillincreaseapp.databinding.ActivityAutorizationBinding
 import com.idapgroup.artemhuminkiy.skillincreaseapp.gitHub.User
 import com.idapgroup.artemhuminkiy.skillincreaseapp.utils.CustomProgressDialog
+import com.idapgroup.artemhuminkiy.skillincreaseapp.utils.startActivity
 import kotlinx.android.synthetic.main.activity_autorization.*
 
 class AuthorizationActivity : AppCompatActivity() {
@@ -46,13 +48,13 @@ class AuthorizationActivity : AppCompatActivity() {
             if (it != null) {
                 when (it) {
                     is AuthorizationViewModel.AuthorizationState.Error -> {
-//                        progressDialog.dismiss()
+                        progressDialog.dismiss()
                         Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
                     }
                     is AuthorizationViewModel.AuthorizationState.Data -> {
-//                        progressDialog.dismiss()
-//                        startActivity(putInBundle(it.user), MainActivity::class.java)
-//                        finish()
+                        progressDialog.dismiss()
+                        startActivity(putInBundle(it.user), MainActivity::class.java)
+                        finish()
                     }
                 }
             }
