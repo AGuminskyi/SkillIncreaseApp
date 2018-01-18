@@ -1,35 +1,40 @@
 package com.idapgroup.artemhuminkiy.skillincreaseapp.utils
 
-import android.app.ProgressDialog
-import android.content.Context
+import android.app.AlertDialog
+import android.app.Dialog
+import android.app.DialogFragment
 import android.os.Bundle
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
+import android.widget.ImageView
 import com.idapgroup.artemhuminkiy.skillincreaseapp.R
-import kotlinx.android.synthetic.main.custom_dialog.*
 
-@Suppress("DEPRECATION")
-class CustomProgressDialog(context: Context) : ProgressDialog(context) {
+class CustomProgressDialog : DialogFragment() {
 
     private val rotate by lazy { RotateAnimation(0f, 360f, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f) }
+    private val builder by lazy { AlertDialog.Builder(activity) }
+    private lateinit var image : ImageView
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.custom_dialog)
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        val view = activity.layoutInflater.inflate(R.layout.custom_dialog, null, false)
+        builder.setView(view)
+        builder.setCancelable(false)
+        image = view.findViewById(R.id.logoImage)
+        animate()
+        return builder.create()
     }
 
-    override fun show() {
-        super.show()
-        with(rotate, {
+    private fun animate(){
+        with(rotate,{
             repeatMode = 1
             repeatCount = Animation.INFINITE
             duration = 1500
         })
-        logoImage.startAnimation(rotate)
+        image.startAnimation(rotate)
     }
 
     override fun dismiss() {
         super.dismiss()
-        logoImage.clearAnimation()
+        image.clearAnimation()
     }
 }

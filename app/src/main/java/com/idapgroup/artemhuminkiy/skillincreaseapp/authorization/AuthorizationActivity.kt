@@ -19,7 +19,7 @@ import kotlinx.android.synthetic.main.activity_autorization.*
 class AuthorizationActivity : AppCompatActivity() {
 
     private val authorizationViewModel: AuthorizationViewModel by lazy { ViewModelProviders.of(this).get(AuthorizationViewModel::class.java) }
-    private val progressDialog by lazy { CustomProgressDialog(this) }
+    private val progressDialog by lazy { CustomProgressDialog() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -28,7 +28,7 @@ class AuthorizationActivity : AppCompatActivity() {
         subscribe()
 
         authorizeButton.setOnClickListener {
-            progressDialog.show()
+            progressDialog.show(fragmentManager,"CustomProgressDialog")
             getUser(binding)
             checkIsRemembered(binding)
             authorizationViewModel.getUser(binding.user)

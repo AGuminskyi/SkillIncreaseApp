@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
     }
     private val userName by lazy { intent.getExtrasExt() }
 
-    private val progressDialog by lazy { CustomProgressDialog(this) }
+    private val progressDialog by lazy { CustomProgressDialog() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
         subscribe()
         userViewModel.getRepos(userName)
-        progressDialog.show()
+        progressDialog.show(fragmentManager, "CustomProgressDialog")
     }
 
     private fun subscribe() {
