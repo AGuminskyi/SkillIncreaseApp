@@ -13,19 +13,21 @@ class CustomProgressDialog : DialogFragment() {
 
     private val rotate by lazy { RotateAnimation(0f, 360f, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f) }
     private val builder by lazy { AlertDialog.Builder(activity) }
-    private lateinit var image : ImageView
+    private lateinit var image: ImageView
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val view = activity.layoutInflater.inflate(R.layout.custom_dialog, null, false)
         builder.setView(view)
-        builder.setCancelable(false)
         image = view.findViewById(R.id.logoImage)
         animate()
-        return builder.create()
+        val alertDialog = builder.create()
+        isCancelable = false
+        alertDialog.setCanceledOnTouchOutside(false)
+        return alertDialog
     }
 
-    private fun animate(){
-        with(rotate,{
+    private fun animate() {
+        with(rotate, {
             repeatMode = 1
             repeatCount = Animation.INFINITE
             duration = 1500
