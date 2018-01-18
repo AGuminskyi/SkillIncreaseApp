@@ -17,6 +17,7 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
+
         Handler().postDelayed({ flipLogo() }, 400)
         Handler().postDelayed({ checkFirstScreen() }, 1900)
     }
@@ -25,6 +26,7 @@ class SplashActivity : AppCompatActivity() {
         val rotate = RotateAnimation(0f, 360f, RotateAnimation.RELATIVE_TO_SELF, 0.5f, RotateAnimation.RELATIVE_TO_SELF, 0.5f)
         rotate.duration = 1500
         progress.startAnimation(rotate)
+
     }
 
     private fun checkFirstScreen() {

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.idapgroup.artemhuminkiy.skillincreaseapp.userData.UserViewModel
+import com.idapgroup.artemhuminkiy.skillincreaseapp.utils.CustomProgressDialog
 import com.idapgroup.artemhuminkiy.skillincreaseapp.utils.getExtrasExt
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -19,6 +20,8 @@ class MainActivity : AppCompatActivity() {
     }
     private val userName by lazy { intent.getExtrasExt() }
 
+    private val progressDialog by lazy { CustomProgressDialog(this) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -27,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
         subscribe()
         userViewModel.getRepos(userName)
+        progressDialog.show()
     }
 
     private fun subscribe() {
@@ -34,10 +38,12 @@ class MainActivity : AppCompatActivity() {
             if (it != null) {
                 when (it) {
                     is UserViewModel.ReposState.Error -> {
+                        progressDialog.dismiss()
                         Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
                     }
                     is UserViewModel.ReposState.Repos -> {
                         adapter.addRepos(it.listRepository)
+                        progressDialog.dismiss()
                     }
                 }
             }

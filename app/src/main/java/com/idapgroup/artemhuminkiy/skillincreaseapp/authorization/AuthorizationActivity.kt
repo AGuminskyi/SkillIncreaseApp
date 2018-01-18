@@ -12,12 +12,14 @@ import com.idapgroup.artemhuminkiy.skillincreaseapp.MainActivity
 import com.idapgroup.artemhuminkiy.skillincreaseapp.R
 import com.idapgroup.artemhuminkiy.skillincreaseapp.databinding.ActivityAutorizationBinding
 import com.idapgroup.artemhuminkiy.skillincreaseapp.gitHub.User
+import com.idapgroup.artemhuminkiy.skillincreaseapp.utils.CustomProgressDialog
 import com.idapgroup.artemhuminkiy.skillincreaseapp.utils.startActivity
 import kotlinx.android.synthetic.main.activity_autorization.*
 
 class AuthorizationActivity : AppCompatActivity() {
 
     private val authorizationViewModel: AuthorizationViewModel by lazy { ViewModelProviders.of(this).get(AuthorizationViewModel::class.java) }
+    private val progressDialog by lazy { CustomProgressDialog(this) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +28,7 @@ class AuthorizationActivity : AppCompatActivity() {
         subscribe()
 
         authorizeButton.setOnClickListener {
+            progressDialog.show()
             getUser(binding)
             checkIsRemembered(binding)
             authorizationViewModel.getUser(binding.user)
@@ -34,7 +37,7 @@ class AuthorizationActivity : AppCompatActivity() {
     }
 
     private fun checkIsRemembered(binding: ActivityAutorizationBinding) {
-        if (forgotPassword.isChecked){
+        if (forgotPassword.isChecked) {
             val prefs = getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE)
             prefs.edit().putString(Constants.USER_NAME, binding.user.login).apply()
         }
@@ -45,9 +48,11 @@ class AuthorizationActivity : AppCompatActivity() {
             if (it != null) {
                 when (it) {
                     is AuthorizationViewModel.AuthorizationState.Error -> {
+                        progressDialog.dismiss()
                         Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
                     }
                     is AuthorizationViewModel.AuthorizationState.Data -> {
+                        progressDialog.dismiss()
                         startActivity(putInBundle(it.user), MainActivity::class.java)
                         finish()
                     }
