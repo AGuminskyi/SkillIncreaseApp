@@ -8,11 +8,11 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.Toast
 import com.idapgroup.artemhuminkiy.skillincreaseapp.Constants
-import com.idapgroup.artemhuminkiy.skillincreaseapp.CustomProgressDialog
 import com.idapgroup.artemhuminkiy.skillincreaseapp.MainActivity
 import com.idapgroup.artemhuminkiy.skillincreaseapp.R
 import com.idapgroup.artemhuminkiy.skillincreaseapp.databinding.ActivityAutorizationBinding
 import com.idapgroup.artemhuminkiy.skillincreaseapp.gitHub.User
+import com.idapgroup.artemhuminkiy.skillincreaseapp.utils.CustomProgressDialog
 import com.idapgroup.artemhuminkiy.skillincreaseapp.utils.startActivity
 import kotlinx.android.synthetic.main.activity_autorization.*
 

@@ -1,10 +1,11 @@
-package com.idapgroup.artemhuminkiy.skillincreaseapp
+package com.idapgroup.artemhuminkiy.skillincreaseapp.utils
 
 import android.app.ProgressDialog
 import android.content.Context
 import android.os.Bundle
 import android.view.animation.Animation
 import android.view.animation.RotateAnimation
+import com.idapgroup.artemhuminkiy.skillincreaseapp.R
 import kotlinx.android.synthetic.main.custom_dialog.*
 
 @Suppress("DEPRECATION")
