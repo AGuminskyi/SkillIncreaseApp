@@ -13,7 +13,9 @@ class MainActivity : AppCompatActivity() {
 
     private val userViewModel: UserViewModel by lazy { ViewModelProviders.of(this).get(UserViewModel::class.java) }
     private val adapter by lazy {
-        MyRecyclerAdapter()
+        MyRecyclerAdapter(onDoneClick = {
+            Toast.makeText(this, "onDonePressed", Toast.LENGTH_SHORT).show()
+        })
     }
     private val userName by lazy { intent.getExtrasExt() }
 

@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 open class Repository(
+        @JsonProperty("id")
+        var id: String= "",
         @JsonProperty("name")
         var name: String = "",
         @JsonProperty("full_name")

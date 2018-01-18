@@ -12,7 +12,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     val repos = MutableLiveData<ReposState>().apply {
         value = ReposState.Init
     }
-    lateinit var disposableObject : Disposable
+    private var disposableObject : Disposable? = null
 
     fun getRepos(userName: String) {
         val gitHubService = GitHubService()
@@ -27,7 +27,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
     override fun onCleared() {
         super.onCleared()
-        disposableObject.dispose()
+        disposableObject?.dispose()
     }
 
     sealed class ReposState{

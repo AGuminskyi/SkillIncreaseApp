@@ -35,7 +35,7 @@ class AuthorizationActivity : AppCompatActivity() {
 
     private fun checkIsRemembered(binding: ActivityAutorizationBinding) {
         if (forgotPassword.isChecked){
-            val prefs = this.getPreferences(Context.MODE_PRIVATE)
+            val prefs = getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE)
             prefs.edit().putString(Constants.USER_NAME, binding.user.login).apply()
         }
     }
@@ -49,6 +49,7 @@ class AuthorizationActivity : AppCompatActivity() {
                     }
                     is AuthorizationViewModel.AuthorizationState.Data -> {
                         startActivity(putInBundle(it.user), MainActivity::class.java)
+                        finish()
                     }
                 }
             }

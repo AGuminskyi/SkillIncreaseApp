@@ -2,32 +2,27 @@ package com.idapgroup.artemhuminkiy.skillincreaseapp.introScreen
 
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.WindowManager
+import com.idapgroup.artemhuminkiy.skillincreaseapp.Constants
 import com.idapgroup.artemhuminkiy.skillincreaseapp.R
 import com.idapgroup.artemhuminkiy.skillincreaseapp.authorization.AuthorizationActivity
 import com.idapgroup.artemhuminkiy.skillincreaseapp.utils.firstTimeLaunched
-import com.idapgroup.artemhuminkiy.skillincreaseapp.utils.isFrirstTimeLaunched
 import kotlinx.android.synthetic.main.activity_welcome.*
 
 class WelcomeActivity : AppCompatActivity() {
 
-
-    private lateinit var prefs: SharedPreferences
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        prefs = this.getPreferences(Context.MODE_PRIVATE)
-        if (!prefs.isFrirstTimeLaunched(this)) {
-            launchHomeScreen()
-        }
+//        prefs = this.getPreferences(Context.MODE_PRIVATE)
+//        if (!prefs.isFrirstTimeLaunched()) {
+//            launchHomeScreen()
+//        }
 
         if (Build.VERSION.SDK_INT >= 21) {
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
@@ -41,7 +36,7 @@ class WelcomeActivity : AppCompatActivity() {
         val viewPagerAdapter = ViewPagerAdapter(supportFragmentManager)
         viewPager.adapter = viewPagerAdapter
         indicator.setViewPager(viewPager)
-        getString(R.string.id, "sss")
+
         nextButton.setOnClickListener {
             val position = viewPager.currentItem
             if (position != viewPager.adapter.count - 1) {
@@ -76,7 +71,8 @@ class WelcomeActivity : AppCompatActivity() {
     }
 
     private fun launchHomeScreen() {
-        prefs.firstTimeLaunched(false, this)
+        val prefs = getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE)
+        prefs.firstTimeLaunched(true)
         startActivity(Intent(this, AuthorizationActivity::class.java))
         finish()
     }

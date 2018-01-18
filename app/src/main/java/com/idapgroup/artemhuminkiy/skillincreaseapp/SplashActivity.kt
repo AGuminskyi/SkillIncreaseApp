@@ -28,7 +28,7 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun checkFirstScreen() {
-        val prefs = this.getPreferences(Context.MODE_PRIVATE)
+        val prefs = getSharedPreferences(Constants.PREF_NAME,Context.MODE_PRIVATE)
         val isUser = prefs.getString(Constants.USER_NAME, null)
         val isWelcome = prefs.getBoolean(Constants.IS_FIRST_TIME_LAUNCH, false)
 

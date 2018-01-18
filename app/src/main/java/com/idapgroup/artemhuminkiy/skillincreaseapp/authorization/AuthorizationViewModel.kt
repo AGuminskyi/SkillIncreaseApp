@@ -12,7 +12,7 @@ class AuthorizationViewModel(application: Application) : AndroidViewModel(applic
     var userInfo = MutableLiveData<AuthorizationState>().apply {
         value = AuthorizationState.Init
     }
-    lateinit var disposeObject : Disposable
+    private var disposeObject : Disposable? = null
 
     fun getUser(user: User) {
         val gitHubService = GitHubService()
@@ -27,7 +27,7 @@ class AuthorizationViewModel(application: Application) : AndroidViewModel(applic
 
     override fun onCleared() {
         super.onCleared()
-        disposeObject.dispose()
+        disposeObject?.dispose()
     }
 
     sealed class AuthorizationState {
