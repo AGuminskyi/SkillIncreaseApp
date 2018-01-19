@@ -42,6 +42,10 @@
     <string name="document_name" formatted="false">Имя документа: %s</string>
     <string name="done">Выполнено</string>
     <string name="downloading">Загрузка...</string>
+    <string name="no_internet_connection">Проверьте интернет подключение</string>
+    <string name="something_go_wrong">Что-то пошло не так</string>
+
+    <string name="document_signed">Документ подписан!</string>
 
 
 </resources>

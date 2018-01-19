@@ -3,10 +3,12 @@ package com.idapgroup.artemhuminkiy.skillincreaseapp
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
-import android.widget.Toast
+import android.util.Log
 import com.idapgroup.artemhuminkiy.skillincreaseapp.userData.UserViewModel
 import com.idapgroup.artemhuminkiy.skillincreaseapp.utils.CustomProgressDialog
+import com.idapgroup.artemhuminkiy.skillincreaseapp.utils.connected
 import com.idapgroup.artemhuminkiy.skillincreaseapp.utils.getExtrasExt
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -15,7 +17,7 @@ class MainActivity : AppCompatActivity() {
     private val userViewModel: UserViewModel by lazy { ViewModelProviders.of(this).get(UserViewModel::class.java) }
     private val adapter by lazy {
         MyRecyclerAdapter(onDoneClick = {
-            Toast.makeText(this, "onDonePressed", Toast.LENGTH_SHORT).show()
+            Snackbar.make(findViewById(R.id.root), R.string.document_signed, Snackbar.LENGTH_LONG).show()
         })
     }
     private val userName by lazy { intent.getExtrasExt() }
@@ -29,8 +31,15 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(my_toolbar)
         recyclerView.adapter = adapter
         subscribe()
-        userViewModel.getRepos(userName)
-        progressDialog.show(fragmentManager, "CustomProgressDialog")
+        checkNetworkInfo()
+    }
+
+    private fun checkNetworkInfo() {
+        if (this.connected()) {
+            progressDialog.show(fragmentManager, "CustomProgressDialog")
+            userViewModel.getRepos(userName)
+        } else
+            Snackbar.make(findViewById(R.id.root), R.string.no_internet_connection, Snackbar.LENGTH_LONG).show()
     }
 
     private fun subscribe() {
@@ -39,7 +48,8 @@ class MainActivity : AppCompatActivity() {
                 when (it) {
                     is UserViewModel.ReposState.Error -> {
                         progressDialog.dismiss()
-                        Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                        Snackbar.make(findViewById(R.id.root), R.string.something_go_wrong, Snackbar.LENGTH_LONG).show()
+                        Log.d(Constants.MAIN_ACTIVITY, it.message)
                     }
                     is UserViewModel.ReposState.Repos -> {
                         adapter.addRepos(it.listRepository)

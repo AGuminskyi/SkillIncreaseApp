@@ -1,15 +1,19 @@
 package com.idapgroup.artemhuminkiy.skillincreaseapp
 
 object Constants {
-    val GITHUB_BASE_URL = "https://api.github.com/"
+    const val GITHUB_BASE_URL = "https://api.github.com/"
 
-    val IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch"
+    const val IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch"
 
-    val PREF_NAME = "com.idapgroup.artemhuminkiy.skillincreaseapp"
+    const val PREF_NAME = "com.idapgroup.artemhuminkiy.skillincreaseapp"
 
-    val LAYOUT = "layout"
+    const val LAYOUT = "layout"
 
-    val USER_NAME = "user_name"
+    const val USER_NAME = "user_name"
 
-    val ID = "id"
+    const val ID = "id"
+
+    const val AUTHORIZATION_ACTIVITY = "authorization_activity"
+
+    const val MAIN_ACTIVITY = "main_activity"
 }
