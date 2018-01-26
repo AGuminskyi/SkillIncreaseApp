@@ -32,6 +32,15 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
         subscribe()
         checkNetworkInfo()
+
+
+//        //fabric method
+//        val auto = AudiStore().buyCar("RX1")
+//        auto.driveCar()
+//
+//        //abstract fabric method
+//        val autoNew = com.idapgroup.artemhuminkiy.skillincreaseapp.fabrica.AbstractFabrica.OpelStore().buyCar("1")
+//        autoNew.driveCar()
     }
 
     private fun checkNetworkInfo() {

@@ -19,11 +19,6 @@ class WelcomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-//        prefs = this.getPreferences(Context.MODE_PRIVATE)
-//        if (!prefs.isFrirstTimeLaunched()) {
-//            launchHomeScreen()
-//        }
-
         if (Build.VERSION.SDK_INT >= 21) {
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
             window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
