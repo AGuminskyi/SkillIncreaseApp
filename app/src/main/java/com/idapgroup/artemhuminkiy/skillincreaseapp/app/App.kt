@@ -8,7 +8,6 @@ import com.idapgroup.artemhuminkiy.skillincreaseapp.app.di.DaggerAppComponent
 class App : Application() {
 
     lateinit var appComponent: AppComponent
-
     companion object {
         fun getComponent(context: Context) =
                 (context.applicationContext as App).appComponent
@@ -17,5 +16,9 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         appComponent = DaggerAppComponent.create()
+        appComponent.inject(this)
+
+//        val test= GitHubService()
+//        test.todo()
     }
 }
