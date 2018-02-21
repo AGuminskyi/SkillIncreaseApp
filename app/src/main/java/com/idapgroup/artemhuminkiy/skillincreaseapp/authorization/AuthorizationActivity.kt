@@ -8,7 +8,6 @@ import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.widget.Toast
 import com.idapgroup.artemhuminkiy.skillincreaseapp.Constants
 import com.idapgroup.artemhuminkiy.skillincreaseapp.MainActivity
 import com.idapgroup.artemhuminkiy.skillincreaseapp.R
@@ -60,8 +59,8 @@ class AuthorizationActivity : AppCompatActivity() {
                 when (it) {
                     is AuthorizationViewModel.AuthorizationState.Error -> {
                         progressDialog.dismiss()
-                        Snackbar.make(findViewById(R.id.root), R.string.something_go_wrong, Snackbar.LENGTH_LONG).show()
-                        Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                        Snackbar.make(findViewById(R.id.authorizationRoot), R.string.something_go_wrong, Snackbar.LENGTH_LONG).show()
+//                        Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
                         Log.d(Constants.AUTHORIZATION_ACTIVITY, it.message)
                     }
                     is AuthorizationViewModel.AuthorizationState.Data -> {
