@@ -40,7 +40,7 @@ class AuthorizationActivity : AppCompatActivity() {
     private fun checkNetwork(binding: ActivityAutorizationBinding) {
         if (this.connected()) {
             progressDialog.show(fragmentManager, "CustomProgressDialog")
-            authorizationViewModel.getUser(binding.user)
+            authorizationViewModel.getUser(binding.user!!)
         } else
             Snackbar.make(findViewById(R.id.authorizationRoot), R.string.no_internet_connection, Snackbar.LENGTH_LONG).show()
 
@@ -49,7 +49,7 @@ class AuthorizationActivity : AppCompatActivity() {
     private fun checkIsRemembered(binding: ActivityAutorizationBinding) {
         if (forgotPassword.isChecked) {
             val prefs = getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE)
-            prefs.edit().putString(Constants.USER_NAME, binding.user.login).apply()
+            prefs.edit().putString(Constants.USER_NAME, binding.user!!.login).apply()
         }
     }
 
