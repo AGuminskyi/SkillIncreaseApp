@@ -1,29 +1,24 @@
 <resources>
     <string name="app_name">SkillIncreaseApp</string>
 
+    <!--intro screen values-->
     <string name="next">Следующий</string>
     <string name="skip">Пропустить</string>
     <string name="go_it">Далее</string>
-
     <string name="slide_one_titile">Добро пожаловать!</string>
     <string name="slide_one_desc">Это приложение для мониторинга документооборота кафедры.</string>
-
     <string name="slide_two_titile">Вход</string>
     <string name="slide_two_desc">Войдите под своей учетной записью.</string>
-
     <string name="slide_three_titile">Возможности</string>
     <string name="slide_three_desc">Открытый доступ к документам кафедры АПЕПС КПИ. Скачивайте, редактируейте и сохраняйте изменения!</string>
-
     <string name="slide_four_titile">Сасибо за внимание</string>
     <string name="slide_four_desc">Приятного использования!</string>
 
-    <string name="documents">Документы</string>
 
+    <!--login screen-->
     <string name="login">Введите ваше имя</string>
     <string name="password">Введите ваш пароль</string>
-
     <string name="autorize">Авторизироваться</string>
-
     <string name="remember_me">Запомнить меня</string>
 
     <string name="id" formatted="false">ID = %s</string>
@@ -34,6 +29,8 @@
     <string name="kpi">KPI</string>
     <string name="apeps">APEPS</string>
 
+    <!--main screen-->
+    <string name="documents">Документы</string>
     <string name="document_type" formatted="false">Тип документа: %s</string>
     <string name="author" formatted="false">Автор: %s</string>
     <string name="creator" formatted="false">Создатель: %s</string>
@@ -41,11 +38,19 @@
     <string name="open_document">Открыть документ</string>
     <string name="document_name" formatted="false">Имя документа: %s</string>
     <string name="done">Выполнено</string>
-    <string name="downloading">Загрузка...</string>
+    <string name="downloading">Загрузка…</string>
     <string name="no_internet_connection">Проверьте интернет подключение</string>
     <string name="something_go_wrong">Что-то пошло не так</string>
-
-    <string name="document_signed">Документ подписан!</string>
-
+    <string name="document_just_signed">Документ подписан!</string>
+    <string name="documents_asigned">Отмеченные назначения</string>
+    <string name="documents_that_you_asign">Ваши назначения</string>
+    <string name="settings_menu">Настройки</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

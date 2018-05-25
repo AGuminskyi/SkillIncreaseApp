@@ -9,6 +9,7 @@
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
     </style>
+
     <style name="TextLabel">
         <!-- Hint color and label color in FALSE state -->
         <item name="android:textColorHint">@color/colorPrimaryDark</item>
@@ -28,4 +29,8 @@
         <item name="contentPaddingLeft">14dp</item>
         <item name="contentPaddingRight">14dp</item>
     </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

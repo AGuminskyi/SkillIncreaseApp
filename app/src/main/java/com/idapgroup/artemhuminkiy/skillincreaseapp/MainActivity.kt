@@ -4,20 +4,25 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v4.view.GravityCompat
+import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.MenuItem
 import com.idapgroup.artemhuminkiy.skillincreaseapp.userData.UserViewModel
 import com.idapgroup.artemhuminkiy.skillincreaseapp.utils.CustomProgressDialog
 import com.idapgroup.artemhuminkiy.skillincreaseapp.utils.connected
 import com.idapgroup.artemhuminkiy.skillincreaseapp.utils.getExtrasExt
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_toolbar_content_layout.*
+import kotlinx.android.synthetic.main.documents_main_layout.*
 
 class MainActivity : AppCompatActivity() {
 
     private val userViewModel: UserViewModel by lazy { ViewModelProviders.of(this).get(UserViewModel::class.java) }
     private val adapter by lazy {
         MyRecyclerAdapter(onDoneClick = {
-            Snackbar.make(findViewById(R.id.root), R.string.document_signed, Snackbar.LENGTH_LONG).show()
+            Snackbar.make(findViewById(R.id.root), R.string.document_just_signed, Snackbar.LENGTH_LONG).show()
         })
     }
     private val userName by lazy { intent.getExtrasExt() }
@@ -29,18 +34,14 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         my_toolbar.title = getString(R.string.documents)
         setSupportActionBar(my_toolbar)
+        val actionBar: ActionBar? = supportActionBar
+        actionBar?.apply {
+            setDisplayHomeAsUpEnabled(true)
+            setHomeAsUpIndicator(R.drawable.ic_menu)
+        }
         recyclerView.adapter = adapter
         subscribe()
         checkNetworkInfo()
-
-
-//        //fabric method
-//        val auto = AudiStore().buyCar("RX1")
-//        auto.driveCar()
-//
-//        //abstract fabric method
-//        val autoNew = com.idapgroup.artemhuminkiy.skillincreaseapp.fabrica.AbstractFabrica.OpelStore().buyCar("1")
-//        autoNew.driveCar()
     }
 
     private fun checkNetworkInfo() {
@@ -67,6 +68,16 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            android.R.id.home -> {
+                drawerLayout.openDrawer(GravityCompat.START)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
 

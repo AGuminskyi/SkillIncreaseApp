@@ -14,9 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity" />
-        <activity android:name=".introScreen.WelcomeActivity">
-
-        </activity>
+        <activity android:name=".introScreen.WelcomeActivity"></activity>
         <activity android:name=".authorization.AuthorizationActivity" />
         <activity android:name=".SplashActivity">
             <intent-filter>
