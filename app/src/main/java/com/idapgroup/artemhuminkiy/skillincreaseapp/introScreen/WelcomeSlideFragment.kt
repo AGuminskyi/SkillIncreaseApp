@@ -22,7 +22,7 @@ class WelcomeSlideFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?):View{
-        val bundle = arguments.getInt(Constants.LAYOUT)
+        val bundle = arguments!!.getInt(Constants.LAYOUT)
         return inflater.inflate(bundle,container,false)
     }
 }

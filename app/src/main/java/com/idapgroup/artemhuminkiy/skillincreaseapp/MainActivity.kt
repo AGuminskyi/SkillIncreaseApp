@@ -29,7 +29,8 @@ class MainActivity : AppCompatActivity() {
         handleNavigationViewClick()
         val isNetworkConnected = checkNetworkInfo()
         if (isNetworkConnected) {
-            addFragment(savedInstanceState)
+            val fragment = DocumentsFragment.newInstance()
+            addFragment(savedInstanceState, userName, fragmentToShow = fragment)
         }
     }
 
@@ -40,13 +41,15 @@ class MainActivity : AppCompatActivity() {
                 nav_document_on_asign -> {
                     if (currentFragment !is DocumentsFragment){
                         val fragment = DocumentsFragment.newInstance()
-                        startFragment(fragment, fragment.getCurrentFragmentTag())
+                        addFragment(userName = userName, fragmentToShow = fragment)
+                        setToolbarTitle("Документы на подпись")
                     }
                 }
                 nav_documents_asigned -> {
                     if (currentFragment !is AssignedDocumentsFragment){
                         val fragment = AssignedDocumentsFragment.newInstance()
-                        startFragment(fragment, fragment.getCurrentFragmentTag())
+                        addFragment(userName = userName, fragmentToShow = fragment)
+                        setToolbarTitle("Подписанные документы")
                     }
                 }
                 nav_documents_that_you_asign -> {
@@ -58,22 +61,17 @@ class MainActivity : AppCompatActivity() {
 
                 }
             }
+            drawerLayout.closeDrawer(GravityCompat.START)
             true
         }
     }
 
-//    private fun checkFragmentsFreaquency(fragmentToShow:Fragment, currentFragment: Fragment){
-//        if(currentFragment !is DocumentsFragment)
-//    }
-
-    private fun addFragment(savedInstanceState: Bundle?) {
-        if (savedInstanceState == null) {
-            val fragment = DocumentsFragment.newInstance()
+    private fun addFragment(savedInstanceState: Bundle? = null, userName: String? = null, fragmentToShow: Fragment) {
+        if (savedInstanceState == null || userName != null) {
             val bundle = Bundle()
             bundle.putString("userName", userName)
-            fragment.arguments = bundle
-//            setToolbarTitle("Документы")
-            startFirstFragment(fragment, fragment.getCurrentFragmentTag())
+            fragmentToShow.arguments = bundle
+            showFragment(fragmentToShow)
         }
     }
 
@@ -89,7 +87,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun setToolbarTitle(toolbarTitle: String) {
-        actionBar?.apply { title = toolbarTitle }
+        my_toolbar.title = toolbarTitle
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

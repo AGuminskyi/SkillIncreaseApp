@@ -9,6 +9,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.idapgroup.artemhuminkiy.skillincreaseapp.gitHub.Repository
 import com.idapgroup.artemhuminkiy.skillincreaseapp.userData.UserViewModel
 import com.idapgroup.artemhuminkiy.skillincreaseapp.utils.CustomProgressDialog
 import kotlinx.android.synthetic.main.documents_main_layout.*
@@ -24,34 +25,44 @@ class DocumentsFragment : Fragment(){
     private val progressDialog by lazy { CustomProgressDialog() }
 
     private val userViewModel: UserViewModel by lazy {
-        ViewModelProviders.of(activity).get(UserViewModel::class.java)
+        ViewModelProviders.of(activity!!).get(UserViewModel::class.java)
     }
 
     private val adapter by lazy {
         DocumentsAdapter(onDoneClick = {
-            Snackbar.make(
-                    view!!.rootView.findViewById(R.id.root),
-                    R.string.document_just_signed,
-                    Snackbar.LENGTH_LONG).show()
+            documentAssigned(it)
+            showSnackBar(R.string.document_just_signed)
+
         })
+    }
+
+    private fun documentAssigned(finished: Repository) {
+        userViewModel.assignedDocuments.value?.add(finished)
+    }
+
+    private fun showSnackBar(textInSnackBar: Int) {
+        Snackbar.make(
+                view!!.rootView.findViewById(R.id.root),
+                textInSnackBar,
+                Snackbar.LENGTH_LONG).show()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if(arguments != null){
-            val userName = arguments.getString("userName")
-            progressDialog.show(activity.fragmentManager, "CustomProgressDialog")
+            val userName = arguments!!.getString("userName")
             userViewModel.getRepos(userName)
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater!!.inflate(R.layout.documents_main_layout, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.documents_main_layout, container, false)
     }
 
-    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView.adapter = adapter
+        progressDialog.show(activity!!.fragmentManager, "CustomProgressDialog")
         subscribe()
     }
 

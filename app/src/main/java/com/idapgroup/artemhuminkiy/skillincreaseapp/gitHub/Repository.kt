@@ -1,8 +1,8 @@
 package com.idapgroup.artemhuminkiy.skillincreaseapp.gitHub
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties
-import com.fasterxml.jackson.annotation.JsonInclude
-import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.annotation.*
+import java.io.Serializable
+import java.text.SimpleDateFormat
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
@@ -14,4 +14,4 @@ open class Repository(
         @JsonProperty("full_name")
         var fullName: String = "",
         @JsonProperty("owner")
-        var owner: User = User())
+        var owner: User = User()): Serializable

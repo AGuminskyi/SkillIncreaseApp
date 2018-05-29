@@ -34,7 +34,7 @@ class WelcomeActivity : AppCompatActivity() {
 
         nextButton.setOnClickListener {
             val position = viewPager.currentItem
-            if (position != viewPager.adapter.count - 1) {
+            if (position != viewPager.adapter!!.count - 1) {
                 viewPager.currentItem = position + 1
             } else
                 launchHomeScreen()
@@ -45,7 +45,7 @@ class WelcomeActivity : AppCompatActivity() {
         }
 
         viewPager.addOnPageChangeListener(PageSelectedListener{
-            if (it == viewPager.adapter.count - 1) {
+            if (it == viewPager.adapter!!.count - 1) {
                 nextButton.text = getString(R.string.go_it)
                 skipButton.visibility = View.GONE
             } else {

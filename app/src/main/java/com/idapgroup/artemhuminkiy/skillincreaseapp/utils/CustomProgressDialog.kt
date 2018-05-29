@@ -37,6 +37,8 @@ class CustomProgressDialog : DialogFragment() {
 
     override fun dismiss() {
         super.dismiss()
-        image.clearAnimation()
+        if(::image.isInitialized) {
+            image.clearAnimation()
+        }
     }
 }

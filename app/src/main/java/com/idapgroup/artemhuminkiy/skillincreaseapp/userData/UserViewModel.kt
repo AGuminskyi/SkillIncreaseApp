@@ -12,6 +12,11 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     val repos = MutableLiveData<ReposState>().apply {
         value = ReposState.Init
     }
+
+    val assignedDocuments = MutableLiveData<MutableList<Repository>>().apply {
+        value = mutableListOf()
+    }
+
     private var disposableObject : Disposable? = null
 
     fun getRepos(userName: String) {
