@@ -7,18 +7,23 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import com.idapgroup.artemhuminkiy.skillincreaseapp.gitHub.Repository
-import org.w3c.dom.Text
 
 class DocumentsAdapter(private val onDoneClick: (Repository) -> Unit) : RecyclerView.Adapter<DocumentsAdapter.MyViewHolder>() {
 
     private var repos : MutableList<Repository> = mutableListOf()
 
+    private val usersList = mutableListOf("Гуминский Артем Николаевич",
+            "Кузьминых Валерий Олександрович", "Аушева Наталия Николаевна",
+            "Ляшенко Максим Владимирович", "Мамалыга Владимир Михайлович")
+
+
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val repository = repos[position]
         holder.documentType.text = holder.itemView.context.getString(R.string.document_type, repository.id)
-        holder.author.text = holder.itemView.context.getString(R.string.author, repository.owner.login)
+//        holder.author.text = holder.itemView.context.getString(R.string.author, repository.owner.login)
+        holder.author.text = holder.itemView.context.getString(R.string.author, getName(0,4))
         holder.documentName.text = holder.itemView.context.getString(R.string.document_name, repository.name)
-        holder.executionTime.text = getRandomExecutionTime()
+        holder.executionTime.text = ("Дней до истечения срока: " + getRandomValue(1, 30))
         holder.done.setOnClickListener {
             onDoneClick(repos[position])
             repos.removeAt(position)
@@ -26,12 +31,15 @@ class DocumentsAdapter(private val onDoneClick: (Repository) -> Unit) : Recycler
         }
     }
 
-    private fun getRandomExecutionTime(): String {
-        val days = randBeetween(1,33)
-        return days.toString()
+    private fun getName(start: Int, end: Int): String{
+        return usersList[getRandomValue(start,end)]
     }
 
-    private fun randBeetween(start: Int, end: Int): Int{
+    private fun getRandomValue(start: Int, end: Int): Int {
+        return randBetween(start,end)
+    }
+
+    private fun randBetween(start: Int, end: Int): Int{
         return start + Math.round(Math.random() * (end - start)).toInt()
     }
 

@@ -8,6 +8,7 @@ fun AppCompatActivity.showFragment(fragmentToShow: Fragment){
     val transaction = supportFragmentManager.beginTransaction()
     val tag = fragmentToShow.javaClass.name
     val fragment : Fragment = supportFragmentManager.findFragmentByTag(tag) ?: fragmentToShow
+//    transaction.remove(supportFragmentManager.findFragmentById(R.id.fragment_container))
     transaction.replace(R.id.fragment_container, fragmentToShow, tag)
     transaction.addToBackStack(null)
     transaction.commit()
@@ -26,8 +27,4 @@ fun AppCompatActivity.getCurrentFragment(fragmentContainerId: Int): Fragment?{
         logd("No fragments found")
         null
     }
-}
-
-fun Fragment.getCurrentFragmentTag(): String{
-    return javaClass.simpleName
 }

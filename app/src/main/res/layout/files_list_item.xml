@@ -1,114 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     style="@style/MyCardViewStyle"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
-    android:layout_width="match_parent">
+    android:layout_margin="8dp">
 
     <android.support.constraint.ConstraintLayout
-        android:layout_height="wrap_content"
+        android:id="@+id/markup"
         android:layout_width="wrap_content"
-        android:id="@+id/markup">
+        android:layout_height="wrap_content">
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/document_type"
-            android:layout_height="wrap_content"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/documents_id"
             android:textSize="20sp" />
 
         <View
-            android:alpha="0.5"
-            android:background="@android:color/darker_gray"
             android:id="@+id/line"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="10dp"
-            android:layout_width="match_parent"
+            android:alpha="0.5"
+            android:background="@android:color/darker_gray"
             app:layout_constraintTop_toBottomOf="@id/document_type" />
 
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/document_image"
+            android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="15dp"
-            android:layout_width="50dp"
             android:src="@drawable/pdf_photo"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/line" />
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/authorTextView"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:layout_width="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_marginStart="16dp"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:text="@string/author"
-            android:maxLines="2"
             android:textSize="18sp"
-            app:layout_constraintLeft_toRightOf="@id/document_image"
-            app:layout_constraintTop_toTopOf="@id/document_image" />
+            app:layout_constraintEnd_toEndOf="@id/markup"
+            app:layout_constraintStart_toEndOf="@id/document_image"
+            app:layout_constraintTop_toTopOf="@id/document_image"
+            tools:text="Автор: Гуминский Артем Николаевич" />
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/document_name"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="16dp"
             android:maxLines="2"
             android:text="@string/document_name"
             android:textSize="18sp"
-            android:layout_marginEnd="5dp"
             app:layout_constraintBottom_toBottomOf="@id/document_image"
-            app:layout_constraintStart_toEndOf="@id/document_image"
+            app:layout_constraintBottom_toTopOf="@+id/execution_time"
             app:layout_constraintEnd_toEndOf="@id/markup"
-            app:layout_constraintTop_toBottomOf="@id/authorTextView"
-            app:layout_constraintBottom_toTopOf="@+id/execution_time"/>
+            app:layout_constraintStart_toEndOf="@id/document_image"
+            app:layout_constraintTop_toBottomOf="@id/authorTextView" />
 
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/timeImage"
+            android:layout_width="0dp"
             android:layout_height="24dp"
             android:layout_marginTop="20dp"
-            android:layout_width="0dp"
             android:src="@drawable/baseline_access_time_black_48"
-            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/document_image"
             app:layout_constraintTop_toBottomOf="@id/document_image" />
 
         <TextView
             android:id="@+id/execution_time"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
             android:layout_width="0dp"
-            android:text="1 час"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:ellipsize="end"
+            android:textSize="18sp"
+            android:maxLines="1"
+            tools:text="1 час"
             app:layout_constraintBottom_toBottomOf="@id/timeImage"
             app:layout_constraintLeft_toRightOf="@id/timeImage"
             app:layout_constraintTop_toTopOf="@id/timeImage" />
 
         <View
-            android:alpha="0.5"
-            android:background="@android:color/darker_gray"
             android:id="@+id/line1"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginTop="15dp"
-            android:layout_width="match_parent"
+            android:alpha="0.5"
+            android:background="@android:color/darker_gray"
             app:layout_constraintTop_toBottomOf="@id/timeImage" />
 
         <android.support.v7.widget.AppCompatButton
-            android:background="@android:color/transparent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_width="0dp"
+            android:background="@android:color/transparent"
             android:text="@string/open_document"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/line1" />
 
         <android.support.v7.widget.AppCompatButton
-            android:background="@android:color/transparent"
-            android:layout_height="wrap_content"
-            android:layout_width="0dp"
-            android:text="@string/done"
             android:id="@+id/done"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintRight_toRightOf="parent" />
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:text="@string/done"
+            android:layout_marginEnd="4dp"
+            app:layout_constraintBottom_toBottomOf="@id/markup"
+            app:layout_constraintRight_toRightOf="@id/markup" />
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>
 

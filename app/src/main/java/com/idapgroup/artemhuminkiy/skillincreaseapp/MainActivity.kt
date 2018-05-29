@@ -1,5 +1,7 @@
 package com.idapgroup.artemhuminkiy.skillincreaseapp
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
@@ -8,6 +10,7 @@ import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.idapgroup.artemhuminkiy.skillincreaseapp.R.id.*
+import com.idapgroup.artemhuminkiy.skillincreaseapp.authorization.AuthorizationActivity
 import com.idapgroup.artemhuminkiy.skillincreaseapp.utils.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_toolbar.*
@@ -53,12 +56,17 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 nav_documents_that_you_asign -> {
-                    if(currentFragment !is DocumentsFragment){
-
+                    if(currentFragment !is ReasignedFragment){
+                        val fragment = ReasignedFragment.newInstance()
+                        addFragment(fragmentToShow = fragment)
+                        setToolbarTitle("Назначенные документы на выполнение")
                     }
                 }
-                nav_settings_menu -> {
-
+                nav_exit_menu -> {
+                    val prefs = getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE)
+                    prefs.firstTimeLaunched(true)
+                    startActivity(Intent(this, AuthorizationActivity::class.java))
+                    finish()
                 }
             }
             drawerLayout.closeDrawer(GravityCompat.START)
