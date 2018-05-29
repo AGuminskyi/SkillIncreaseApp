@@ -2,6 +2,9 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_document_on_asign"
+            android:title="@string/documents_on_asign"/>
+        <item
             android:id="@+id/nav_documents_asigned"
             android:title="@string/documents_asigned" />
         <item

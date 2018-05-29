@@ -8,7 +8,7 @@ import android.widget.Button
 import android.widget.TextView
 import com.idapgroup.artemhuminkiy.skillincreaseapp.gitHub.Repository
 
-class MyRecyclerAdapter(private val onDoneClick: () -> Unit) : RecyclerView.Adapter<MyRecyclerAdapter.MyViewHolder>() {
+class DocumentsAdapter(private val onDoneClick: () -> Unit) : RecyclerView.Adapter<DocumentsAdapter.MyViewHolder>() {
 
     private var repos : MutableList<Repository> = mutableListOf()
 
@@ -31,8 +31,9 @@ class MyRecyclerAdapter(private val onDoneClick: () -> Unit) : RecyclerView.Adap
 
     override fun getItemCount(): Int = repos.size
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): MyViewHolder {
-        val itemView = LayoutInflater.from(parent!!.context).inflate(R.layout.files_list_item, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        val itemView = LayoutInflater.from(parent.context)
+                .inflate(R.layout.files_list_item, parent, false)
         return MyViewHolder(itemView)
     }
 
