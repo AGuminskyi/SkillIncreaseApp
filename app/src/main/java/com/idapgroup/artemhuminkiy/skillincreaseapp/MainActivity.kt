@@ -60,8 +60,8 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
                 nav_documents_asigned -> {
-                    if (currentFragment !is AssignedDocumentsFragment) {
-                        val fragment = AssignedDocumentsFragment.newInstance()
+                    if (currentFragment !is ArchivedDocumentsFragment) {
+                        val fragment = ArchivedDocumentsFragment.newInstance()
                         addFragment(userName = userName, fragmentToShow = fragment)
                         setToolbarTitle("Подписанные документы")
                         fab.show()

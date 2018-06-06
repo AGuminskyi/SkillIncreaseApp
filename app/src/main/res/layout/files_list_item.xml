@@ -39,19 +39,20 @@
 
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/document_image"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
             android:layout_marginTop="30dp"
             android:src="@drawable/pdf_photo"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/line" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/line"
+            android:scaleType="fitCenter"/>
 
         <android.support.v7.widget.AppCompatTextView
             android:id="@+id/authorTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="4dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="10dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="@string/author"
@@ -66,14 +67,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="5dp"
-            android:layout_marginStart="16dp"
             android:maxLines="2"
             android:text="@string/document_name"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="@id/document_image"
             app:layout_constraintBottom_toTopOf="@+id/execution_time"
             app:layout_constraintEnd_toEndOf="@id/markup"
-            app:layout_constraintStart_toEndOf="@id/document_image"
+            app:layout_constraintStart_toStartOf="@id/authorTextView"
             app:layout_constraintTop_toBottomOf="@id/authorTextView" />
 
         <android.support.v7.widget.AppCompatImageView
@@ -114,6 +114,7 @@
             android:layout_marginTop="10dp"
             android:background="@android:color/transparent"
             android:text="@string/open_document"
+            android:id="@+id/openDocumentButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/line1" />
@@ -123,10 +124,12 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@android:color/transparent"
-            android:text="@string/done"
+            tools:text="fdsfdafdllllllaaaaaaadddd"
             android:layout_marginEnd="4dp"
             app:layout_constraintBottom_toBottomOf="@id/markup"
-            app:layout_constraintRight_toRightOf="@id/markup" />
+            android:layout_marginStart="20dp"
+            app:layout_constraintStart_toEndOf="@id/openDocumentButton"
+            app:layout_constraintEnd_toEndOf="@+id/markup" />
     </android.support.constraint.ConstraintLayout>
 </android.support.v7.widget.CardView>
 

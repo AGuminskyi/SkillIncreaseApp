@@ -4,13 +4,12 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
-import com.idapgroup.artemhuminkiy.skillincreaseapp.gitHub.Repository
+import com.idapgroup.artemhuminkiy.skillincreaseapp.userData.DocumentFile
 
-class AssignedDocumentsAdapter: RecyclerView.Adapter<AssignedDocumentsAdapter.MyViewHolder>() {
+class ArchivedDocumentsAdapter: RecyclerView.Adapter<ArchivedDocumentsAdapter.MyViewHolder>() {
 
-    private var asignedDocuments = mutableListOf<Repository>()
+    private var asignedDocuments = mutableListOf<DocumentFile>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val itemView = LayoutInflater.from(parent.context)
@@ -23,12 +22,13 @@ class AssignedDocumentsAdapter: RecyclerView.Adapter<AssignedDocumentsAdapter.My
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val assignedDocument = asignedDocuments[position]
-        holder.documentAssigneData.text = "30.05.18"
-        holder.documentId.text = assignedDocument.id
-        holder.documentName.text = assignedDocument.owner.login
+        holder.documentAssigneData.text = "${assignedDocument.data}:${assignedDocument.time}"
+        holder.documentId.text = assignedDocument.shortInfo
+        holder.documentName.text = assignedDocument.fileName
     }
 
-    fun addRepos(items : List<Repository>){
+    fun addRepos(items : List<DocumentFile>){
+        asignedDocuments.removeAll(asignedDocuments)
         asignedDocuments.addAll(items)
         notifyDataSetChanged()
     }

@@ -2,6 +2,8 @@ package com.idapgroup.artemhuminkiy.skillincreaseapp
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
@@ -9,18 +11,20 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.idapgroup.artemhuminkiy.skillincreaseapp.dialogs.PhotoDialogFragment
 import com.idapgroup.artemhuminkiy.skillincreaseapp.gitHub.Repository
+import com.idapgroup.artemhuminkiy.skillincreaseapp.userData.DocumentFile
 import com.idapgroup.artemhuminkiy.skillincreaseapp.userData.UserViewModel
 import com.idapgroup.artemhuminkiy.skillincreaseapp.utils.CustomProgressDialog
 import kotlinx.android.synthetic.main.documents_main_layout.*
 
-class DocumentsFragment : Fragment(){
+class DocumentsFragment : Fragment() {
 
     companion object {
         fun newInstance() = DocumentsFragment().apply {
-                arguments = Bundle()
-            }
+            arguments = Bundle()
         }
+    }
 
     private val progressDialog by lazy { CustomProgressDialog() }
 
@@ -29,15 +33,41 @@ class DocumentsFragment : Fragment(){
     }
 
     private val adapter by lazy {
-        DocumentsAdapter(onDoneClick = {
-            documentAssigned(it)
-            showSnackBar(R.string.document_just_signed)
-
-        })
+        DocumentsAdapter(
+                onDoneClick = {
+                    documentAssigned(it)
+                    showSnackBar(R.string.document_just_signed)
+                },
+                onOpenFile = {
+                    openFile(it)
+                },
+                onPhotoClick = {
+                    if (it != null) {
+                        PhotoDialogFragment.newInstance(it).show(fragmentManager, "PhotoDialogFragment")
+                    }
+                })
     }
 
-    private fun documentAssigned(finished: Repository) {
-        userViewModel.assignedDocuments.value?.add(finished)
+    private fun openFile(it: String?) {
+        if(it != null){
+            val filePath = Uri.parse(it)
+            val fileExtension = it.substring(it.lastIndexOf((".")) + 1)
+            val intent = Intent(Intent.ACTION_GET_CONTENT)
+            intent.addCategory(Intent.CATEGORY_OPENABLE)
+            intent.flags = Intent.FLAG_ACTIVITY_NO_HISTORY
+            intent.type = "application/$fileExtension"
+            intent.putExtra(Intent.EXTRA_MIME_TYPES, filePath)
+            intent.setDataAndType(filePath, fileExtension)
+//            val intent = Intent()
+//            intent.action = Intent.ACTION_VIEW
+//            intent.setDataAndType(filePath, "applicaton/$fileExtension")
+            startActivity(Intent.createChooser(intent, "Выберите менеджер для открытия файла"))
+        }
+    }
+
+    private fun documentAssigned(finished: DocumentFile) {
+        userViewModel.finishedDocuments.value?.add(finished)
+        userViewModel.assignedDocuments.value?.remove(finished)
     }
 
     private fun showSnackBar(textInSnackBar: Int) {
@@ -49,11 +79,12 @@ class DocumentsFragment : Fragment(){
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if(arguments != null){
+        if (arguments != null) {
             val userName = arguments!!.getString("userName")
             userViewModel.getRepos(userName)
         }
     }
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.documents_main_layout, container, false)
@@ -76,7 +107,7 @@ class DocumentsFragment : Fragment(){
                         Log.d(Constants.MAIN_ACTIVITY, it.message)
                     }
                     is UserViewModel.ReposState.Repos -> {
-                        adapter.addRepos(it.listRepository)
+                        adapter.addRepos(userViewModel.assignedDocuments.value!!)
                         progressDialog.dismiss()
                     }
                 }

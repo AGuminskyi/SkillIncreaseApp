@@ -19,7 +19,6 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".introScreen.WelcomeActivity"></activity>
         <activity android:name=".authorization.AuthorizationActivity" />
-        <activity android:name=".utils.ImageUtilsActivity"/>
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

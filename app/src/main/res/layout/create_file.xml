@@ -166,7 +166,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:text="@string/document"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:checked="true"/>
 
         <RadioButton
             android:id="@+id/assignmentRadioButton"
@@ -188,7 +189,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/documentsRadioGroup"
         app:layout_constraintTop_toBottomOf="@id/documentsRadioGroup"
-        android:clickable="false"
-        android:focusable="false"/>
+        android:enabled="false"/>
 
 </android.support.constraint.ConstraintLayout>

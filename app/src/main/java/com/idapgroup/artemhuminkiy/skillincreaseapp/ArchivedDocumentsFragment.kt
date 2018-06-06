@@ -10,16 +10,16 @@ import com.idapgroup.artemhuminkiy.skillincreaseapp.userData.UserViewModel
 import kotlinx.android.synthetic.main.documents_main_layout.*
 
 
-class AssignedDocumentsFragment : Fragment() {
+class ArchivedDocumentsFragment : Fragment() {
 
-    private val adapter by lazy { AssignedDocumentsAdapter() }
+    private val adapter by lazy { ArchivedDocumentsAdapter() }
 
     private val userViewModel: UserViewModel by lazy {
         ViewModelProviders.of(activity!!).get(UserViewModel::class.java)
     }
 
     companion object {
-        fun newInstance() = AssignedDocumentsFragment().apply {
+        fun newInstance() = ArchivedDocumentsFragment().apply {
             arguments = Bundle()
         }
     }
@@ -31,6 +31,6 @@ class AssignedDocumentsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView.adapter = adapter
-        adapter.addRepos(userViewModel.assignedDocuments.value!!.toList())
+        adapter.addRepos(userViewModel.finishedDocuments.value!!.toList())
     }
 }

@@ -7,13 +7,27 @@ import android.util.Log
 import com.idapgroup.artemhuminkiy.skillincreaseapp.gitHub.GitHubService
 import com.idapgroup.artemhuminkiy.skillincreaseapp.gitHub.Repository
 import io.reactivex.disposables.Disposable
+import java.util.*
 
 class UserViewModel(application: Application) : AndroidViewModel(application) {
     val repos = MutableLiveData<ReposState>().apply {
         value = ReposState.Init
     }
 
-    val assignedDocuments = MutableLiveData<MutableList<Repository>>().apply {
+    val assignedDocumentsNew = MutableLiveData<MutableList<DocumentFile>>().apply {
+        value = mutableListOf()
+    }
+
+    val assignedDocuments = MutableLiveData<MutableList<DocumentFile>>().apply {
+        value = mutableListOf()
+    }
+
+    val finishedDocuments = MutableLiveData<MutableList<DocumentFile>>().apply {
+        value = mutableListOf()
+    }
+
+
+    val assignedFiles = MutableLiveData<MutableList<DocumentFile>>().apply {
         value = mutableListOf()
     }
 
@@ -41,4 +55,25 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         data class Error(val message: String) : ReposState()
 
     }
+}
+
+class DocumentFile(
+        var id: UUID = UUID.randomUUID(),
+        var executor: String = "",
+        var image: String? = null,
+        var filePath: String? = null,
+        var fileName: String? = null,
+        var data: String = "",
+        var time: String? = null,
+        var type: DOCUMENT_TYPE = DOCUMENT_TYPE.DOCUMENT,
+        var shortInfo: String? = null,
+        var executionState: PROCESSING_STATE = PROCESSING_STATE.NOT_SEEN
+        )
+
+enum class DOCUMENT_TYPE {
+    DOCUMENT, ASSIGNMENT
+}
+
+enum class PROCESSING_STATE{
+    IN_PROGRESS, DONE, NOT_SEEN
 }

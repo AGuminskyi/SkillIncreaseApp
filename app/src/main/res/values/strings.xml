@@ -70,6 +70,8 @@
     <string name="choose_document_type">Выберите тип документа:</string>
     <string name="exit_dialog_message">Вы действительно хотите выйти?</string>
     <string name="exit_dialog_title">Выйти из аккаунта?</string>
+    <string name="take_in_progress">Взять в процесс</string>
+    <string name="assign_execution">Назначить выполнение</string>
 
     <string name="document">Документ</string>
     <string name="assignment">Поручение</string>
