@@ -11,9 +11,11 @@ import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.idapgroup.artemhuminkiy.skillincreaseapp.R.id.*
 import com.idapgroup.artemhuminkiy.skillincreaseapp.authorization.AuthorizationActivity
+import com.idapgroup.artemhuminkiy.skillincreaseapp.dialogs.showExitAccountDialog
 import com.idapgroup.artemhuminkiy.skillincreaseapp.utils.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_toolbar.*
+import kotlinx.android.synthetic.main.activity_toolbar_content_layout.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,8 +29,16 @@ class MainActivity : AppCompatActivity() {
         actionBar?.apply {
             setDisplayHomeAsUpEnabled(true)
             setHomeAsUpIndicator(R.drawable.ic_menu)
-            title = this@MainActivity.getString(R.string.documents_on_asign)
+            title = this@MainActivity.getString(R.string.documents_on_assign)
         }
+
+        fab.setOnClickListener {
+            val fragment = NewDocumentAssignmentFragment.newInstance()
+            addFragment(savedInstanceState, null, fragment)
+            setToolbarTitle("Создание документа/поручения")
+            fab.hide()
+        }
+
         handleNavigationViewClick()
         val isNetworkConnected = checkNetworkInfo()
         if (isNetworkConnected) {
@@ -38,40 +48,52 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun handleNavigationViewClick() {
-        design_navigation_view.setNavigationItemSelectedListener {
+        my_design_navigation_view.setNavigationItemSelectedListener {
             val currentFragment = getCurrentFragment(R.id.fragment_container)
-            when(it.itemId){
+            when (it.itemId) {
                 nav_document_on_asign -> {
-                    if (currentFragment !is DocumentsFragment){
+                    if (currentFragment !is DocumentsFragment) {
                         val fragment = DocumentsFragment.newInstance()
                         addFragment(userName = userName, fragmentToShow = fragment)
                         setToolbarTitle("Документы на подпись")
+                        fab.show()
                     }
                 }
                 nav_documents_asigned -> {
-                    if (currentFragment !is AssignedDocumentsFragment){
+                    if (currentFragment !is AssignedDocumentsFragment) {
                         val fragment = AssignedDocumentsFragment.newInstance()
                         addFragment(userName = userName, fragmentToShow = fragment)
                         setToolbarTitle("Подписанные документы")
+                        fab.show()
                     }
                 }
                 nav_documents_that_you_asign -> {
-                    if(currentFragment !is ReasignedFragment){
+                    if (currentFragment !is ReasignedFragment) {
                         val fragment = ReasignedFragment.newInstance()
                         addFragment(fragmentToShow = fragment)
                         setToolbarTitle("Назначенные документы на выполнение")
+                        fab.show()
                     }
                 }
                 nav_exit_menu -> {
-                    val prefs = getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE)
-                    prefs.firstTimeLaunched(true)
-                    startActivity(Intent(this, AuthorizationActivity::class.java))
-                    finish()
+                    showExitDialog(::exitFromAccount)
                 }
             }
             drawerLayout.closeDrawer(GravityCompat.START)
             true
         }
+    }
+
+    private fun exitFromAccount() {
+        val prefs = getSharedPreferences(Constants.PREF_NAME, Context.MODE_PRIVATE)
+        prefs.firstTimeLaunched(true)
+        startActivity(Intent(this, AuthorizationActivity::class.java))
+        finish()
+    }
+
+    private fun showExitDialog(function: () -> Unit) {
+        showExitAccountDialog(this, R.string.exit_dialog_title,
+                R.string.exit_dialog_message, function)
     }
 
     private fun addFragment(savedInstanceState: Bundle? = null, userName: String? = null, fragmentToShow: Fragment) {
@@ -82,7 +104,6 @@ class MainActivity : AppCompatActivity() {
             showFragment(fragmentToShow)
         }
     }
-
 
 
     private fun checkNetworkInfo(): Boolean {
@@ -106,6 +127,13 @@ class MainActivity : AppCompatActivity() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    override fun onBackPressed() {
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            fab.show()
+        }
+        super.onBackPressed()
     }
 }
 

@@ -29,6 +29,23 @@ class DocumentsAdapter(private val onDoneClick: (Repository) -> Unit) : Recycler
             repos.removeAt(position)
             notifyDataSetChanged()
         }
+        setJobProgressText(holder.jobProgress)
+    }
+
+    private fun setJobProgressText(jobProgress: TextView) {
+        val value = getRandomValue(1,3)
+        if(value == 1){
+            jobProgress.text = "Выполнено"
+            jobProgress.setTextColor(jobProgress.context.resources.getColor(R.color.green))
+        }
+        if(value == 2){
+            jobProgress.text = "В процессе"
+            jobProgress.setTextColor(jobProgress.context.resources.getColor(R.color.colorAccent))
+        }
+        if(value == 3){
+            jobProgress.text = "Не рассмотрено"
+            jobProgress.setTextColor(jobProgress.context.resources.getColor(R.color.red))
+        }
     }
 
     private fun getName(start: Int, end: Int): String{
@@ -62,5 +79,10 @@ class DocumentsAdapter(private val onDoneClick: (Repository) -> Unit) : Recycler
         val documentName : TextView = itemView.findViewById(R.id.document_name)
         val done : Button = itemView.findViewById(R.id.done)
         val executionTime: TextView = itemView.findViewById(R.id.execution_time)
+        val jobProgress: TextView = itemView.findViewById(R.id.jobProgress)
+    }
+
+    enum class EXECTUTION_COLOR{
+        DONE, IN_PROGRESS, NOT_TAKEN
     }
 }

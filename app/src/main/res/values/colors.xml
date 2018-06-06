@@ -6,6 +6,9 @@
 
     <color name="endButtonColor">#212121</color>
 
+    <color name="green">#3ff503</color>
+    <color name="red">#ed0101</color>
+
 
     <color name="bg_screen1">#f64c73</color>
     <color name="bg_screen2">#20d2bb</color>

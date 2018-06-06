@@ -3,13 +3,19 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_document_on_asign"
-            android:title="@string/documents_on_asign"/>
+            android:title="@string/documents_on_assign"/>
         <item
             android:id="@+id/nav_documents_asigned"
             android:title="@string/documents_asigned" />
         <item
             android:id="@+id/nav_documents_that_you_asign"
             android:title="@string/documents_that_you_asign" />
+        <item
+            android:id="@+id/nav_input_assignments"
+            android:title="@string/input_assignment"/>
+        <item
+            android:id="@+id/nav_output_assignments"
+            android:title="@string/output_assignment"/>
         <item
             android:id="@+id/nav_exit_menu"
             android:title="@string/exit" />

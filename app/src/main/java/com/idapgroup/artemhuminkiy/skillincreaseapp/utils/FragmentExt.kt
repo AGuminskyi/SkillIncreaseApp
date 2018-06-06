@@ -6,11 +6,13 @@ import com.idapgroup.artemhuminkiy.skillincreaseapp.R
 
 fun AppCompatActivity.showFragment(fragmentToShow: Fragment){
     val transaction = supportFragmentManager.beginTransaction()
+    transaction.setCustomAnimations(R.anim.slide_fragment_left, R.anim.slide_fragment_right,
+                                    R.anim.slide_fragment_left, R.anim.slide_fragment_right)
     val tag = fragmentToShow.javaClass.name
     val fragment : Fragment = supportFragmentManager.findFragmentByTag(tag) ?: fragmentToShow
 //    transaction.remove(supportFragmentManager.findFragmentById(R.id.fragment_container))
     transaction.replace(R.id.fragment_container, fragmentToShow, tag)
-    transaction.addToBackStack(null)
+    transaction.addToBackStack(tag)
     transaction.commit()
 }
 

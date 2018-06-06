@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/fileImage"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_margin="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_image_black_120dp"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:hint="@string/input_short_information"
+        android:theme="@style/TextLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/fileImage"
+        app:layout_constraintTop_toTopOf="@id/fileImage">
+
+        <android.support.v7.widget.AppCompatEditText
+            android:id="@+id/informationInputText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text|textMultiLine"
+            android:maxLength="200"
+            android:textSize="16sp"
+            tools:text="Hello, my name is artem and i wint to present u somethin interesting"/>
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/executorTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/choose_exectuor"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/fileImage"
+        app:layout_constraintTop_toBottomOf="@id/fileImage" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/chooseExecutorButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/tap_to_choose_exectuor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/executorTextView"
+        app:layout_constraintTop_toBottomOf="@id/executorTextView" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/dateTimeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/input_time_for_execution"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/fileImage"
+        app:layout_constraintTop_toBottomOf="@id/chooseExecutorButton" />
+
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/dateButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_date_range_black_24dp"
+        app:layout_constraintStart_toStartOf="@id/dateTimeTextView"
+        app:layout_constraintTop_toBottomOf="@id/dateTimeTextView" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/dateTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/dateButton"
+        app:layout_constraintStart_toEndOf="@id/dateButton"
+        app:layout_constraintTop_toTopOf="@id/dateButton"
+        tools:text="22.05.13" />
+
+    <android.support.v7.widget.AppCompatImageButton
+        android:id="@+id/timeButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/transparent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/baseline_access_time_black_48"
+        app:layout_constraintEnd_toEndOf="@id/dateTimeTextView"
+        app:layout_constraintTop_toBottomOf="@id/dateTimeTextView" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/timeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/timeButton"
+        app:layout_constraintStart_toEndOf="@id/timeButton"
+        app:layout_constraintTop_toTopOf="@id/timeButton"
+        tools:text="18:00" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/fileTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/choose_file"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/dateButton"
+        app:layout_constraintTop_toBottomOf="@id/dateButton" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/chooseFileFromStorage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/choose_file_add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fileTextView" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:id="@+id/documentTypeTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/choose_document_type"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/dateButton"
+        app:layout_constraintTop_toBottomOf="@id/chooseFileFromStorage" />
+
+    <RadioGroup
+        android:id="@+id/documentsRadioGroup"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/documentTypeTextView"
+        app:layout_constraintTop_toBottomOf="@id/documentTypeTextView">
+
+        <RadioButton
+            android:id="@+id/documentRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:text="@string/document"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/assignmentRadioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:text="@string/assignment"
+            android:textSize="18sp" />
+
+    </RadioGroup>
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/resultDocument"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/fill_in_all_fields"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/documentsRadioGroup"
+        app:layout_constraintTop_toBottomOf="@id/documentsRadioGroup"
+        android:clickable="false"
+        android:focusable="false"/>
+
+</android.support.constraint.ConstraintLayout>
